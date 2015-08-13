@@ -1,0 +1,27 @@
+<%= form_for @student, :url => { :action => :choose_courses}, :html => { :method => 'post' } do |f| %>
+    <% if @student.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@student.errors.count, 'error') %> prohibited this course from being saved:</h2>
+
+          <ul>
+            <% @student.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <label>Student:</label> <%= @student.name%><br>
+
+    <h3>Choose your courses</h3>
+
+    <%= f.collection_check_boxes(:course_ids, Course.all, :id, :name) do |b| %>
+        <%= b.label { b.check_box + b.text} %><br>
+    <% end %>
+    <br>
+    <div class="actions">
+      <%= submit_tag %>
+    </div>
+<% end %>
+
+<%= link_to 'Back', root_path %>
