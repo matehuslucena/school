@@ -1,3 +1,9 @@
+<script src="jquery.maskedinput.js" type="text/javascript"></script>
+<script>
+    jQuery(function($){
+        $("#register").mask("999-9");
+    });
+</script>
 <%= form_for(@student) do |f| %>
   <% if @student.errors.any? %>
     <div id="error_explanation">
@@ -16,14 +22,14 @@
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :register_number %><br>
-    <%= f.text_field :register_number %>
+    <%= f.label :register_number%><br>
+    <%= f.text_field :register_number, :id => 'register'  %>
   </div>
   <!--<div class="field">-->
     <!-- <%= f.label :status %><br>-->
     <!--<%= f.number_field :status %>-->
   <!--</div>-->
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Send', :class => 'btn btn-primary btn-lg outline'  %>
   </div>
 <% end %>

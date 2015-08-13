@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Students</h1>
 
 <table class="table">
@@ -14,12 +12,11 @@
     <% @students.each do |student| %>
       <tr>
         <td><%= student.name %></td>
-        <td><%= student.register_number %></td>
-        <td><%= student.status %></td>
-        <td><%= link_to 'Show', student, :class => 'btn btn-primary btn-lg outline'  %></td>
-        <td><%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-primary btn-lg outline'  %></td>
-        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary btn-lg outline'  %></td>
-        <td><%= link_to 'Choose courses', courses_student_path(student), :class => 'btn btn-primary btn-lg outline'  %></td>
+        <td width="300px"><%= student.register_number %></td>
+        <td class="acoes"><%= link_to 'Show', student, :class => 'btn btn-primary btn-lg outline'  %></td>
+        <td class="acoes"><%= link_to 'Edit', edit_student_path(student), :class => 'btn btn-primary btn-lg outline'  %></td>
+        <td class="acoes"><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-primary btn-lg outline'  %></td>
+        <td class="acoes"><%= link_to 'Choose courses', courses_student_path(student), :class => 'btn btn-primary btn-lg outline'  %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +25,3 @@
 <br>
 
 <%= link_to 'New Student', new_student_path, :class => 'btn btn-primary btn-lg outline' %>
-<%= link_to 'Courses', courses_path, :class => 'btn btn-primary btn-lg outline' %>
