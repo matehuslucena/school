@@ -11,7 +11,7 @@
         </div>
     <% end %>
 
-    <label>Student:</label> <%= @student.name%><br>
+    <h3>Student: <%= @student.name%><br></h3>
 
     <h3>Choose your courses</h3>
 
@@ -20,8 +20,8 @@
     <% end %>
     <br>
     <div class="actions">
-      <%= submit_tag %>
+      <%= submit_tag 'Send', :class => 'btn btn-primary btn-lg outline'  %>
     </div>
 <% end %>
 
-<%= link_to 'Back', root_path %>
+<%= link_to 'Back', root_path, :class => 'btn btn-primary btn-lg outline' %>
