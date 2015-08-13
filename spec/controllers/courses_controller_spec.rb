@@ -6,7 +6,7 @@ describe CoursesController do
     it 'populate an array of courses' do
       course = create(:course)
       get :index
-      expect(assigns(:course)).to eq([course])
+      expect(assigns(:courses)).to eq([course])
     end
 
     it 'renders the index template' do
