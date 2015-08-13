@@ -69,10 +69,12 @@ class StudentsController < ApplicationController
   def choose_courses
     course_ids = params[:student][:course_ids]
     student_id = params[:id]
-    if student_has_not_classrooms(student_id)
-      flash[:notice] = save_new_student_courses(student_id, course_ids)
+    if Student.student_has_not_classrooms(student_id)
+      flash[:notice] =  Student.save_new_student_courses(student_id, course_ids)
+      redirect_to root_path
     else
-      flash[:notice] = update_student_courses(student_id, course_ids)
+      flash[:notice] =  Student.update_student_courses(student_id, course_ids)
+      redirect_to root_path
     end
   end
 
@@ -85,35 +87,5 @@ class StudentsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def student_params
     params.require(:student).permit(:name, :register_number, :status)
-  end
-
-  def student_has_not_classrooms(student_id)
-    classroom = Classroom.where(student_id: student_id)
-    if classroom.empty?
-      true
-    else
-      false
-    end
-  end
-
-  def save_new_student_courses(student_id, course_ids)
-    course_ids.each do |course_id|
-      unless course_id.empty?
-        classroom = Classroom.new
-        classroom.student_id = student_id
-        classroom.course_id = course_id
-        classroom.entry_at = Time.new
-        if classroom.save
-          'Courses are successfully chosen.'
-        else
-          'Courses are not save.'
-        end
-      end
-    end
-  end
-
-  def update_student_courses(student_id, course_ids)
-    Classroom.destroy_all(student_id: student_id)
-    save_new_student_courses(student_id, course_ids)
   end
 end
